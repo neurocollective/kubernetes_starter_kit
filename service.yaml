@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-kube
+  labels:
+    app: hello-kube
+    tier: frontend
+spec:
+  type: NodePort 
+  ports:
+  - port: 8080
+  selector:
+    app: hello-kube
+    tier: frontend

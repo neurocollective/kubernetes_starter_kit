@@ -1,0 +1,30 @@
+apiVersion: apps/v1 # for versions before 1.9.0 use apps/v1beta2
+kind: Deployment
+metadata:
+  name: hello-kube
+  labels:
+    app: hello-kube
+spec:
+  selector:
+    matchLabels:
+      app: hello-kube
+      tier: frontend
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: hello-kube
+        tier: frontend
+    spec:
+      containers:
+      - name: kubernetes-hello
+        image: gcr.io/google-samples/node-hello:1.0
+        # resources:
+        #   requests:
+        #     cpu: 100m
+        #     memory: 100Mi
+        # env:
+        # - name: GET_HOSTS_FROM
+        #   value: dns
+        ports:
+        - containerPort: 8080
